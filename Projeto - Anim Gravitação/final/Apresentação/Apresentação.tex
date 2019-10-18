@@ -1,0 +1,347 @@
+\documentclass[compress]{beamer}
+%\documentclass[ignorenonframetext,handout]{beamer}
+%\setbeamercovered{transparent}
+%\usepackage[ISO 8859-1]{inputenc}
+%\usepackage{default}
+
+% para usar figuras devemos acrescentar
+\usepackage{graphicx}
+%\usepackage{graphics}
+%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+%\DeclareGraphicsExtensions{.jpg, .eps}
+%\DeclareGraphicsRule{.jpg}{eps}{.jpg}{`jpeg2ps -h -r 600 #1}
+%\usepackage{tikz}
+%\usepackage{bm}
+%\usetikzlibrary{arrows,backgrounds,coordinatesystems,3d,shapes,plotmarks,automata,calendar,er,
+%folding,matrix,mindmap,patterns,petri,plothandlers,topaths,trees} 
+%\usetikzlibrary{positioning}
+%\usepgflibrary{decorations.pathreplacing}
+%\usetikzlibrary{decorations.pathreplacing}
+%\usetikzlibrary{decorations.pathmorphing}
+%\usetikzlibrary[patterns]
+%\tikzstyle{every text node part}
+%\usetikzlibrary{arrows,backgrounds,positioning,fit} 
+%\usetikzlibrary{calc}
+% para gerar graficos no latex
+%\usepackage{pgfplots}
+%\pgfplotsset{compat=newest}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{MnSymbol}
+
+\usepackage[brazil]{babel}
+%\usepackage[utf8]{inputenc}
+
+% \usepackage{algpseudocode}
+% \usepackage{algorithmicx}
+\usepackage[Algoritmo]{algorithm}
+\usepackage[noend]{algorithmic}
+
+\setbeamertemplate{bibliography entry title}{}
+\setbeamertemplate{bibliography entry location}{}
+\setbeamertemplate{bibliography entry note}{}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+%\usepackage{shadethm}
+
+%\definecolor{shadethmcolor}{rgb}{.75,.75,.75}
+
+%\newshadetheorem{theorem}{\scshape Teorema}[chapter]
+\newtheorem{teorema}[theorem]{\scshape Teorema}
+\newtheorem{proposicao}[theorem]{\scshape Proposição}
+\newtheorem{corolario}[theorem]{\scshape Corolário}
+\newtheorem{lema}[theorem]{\scshape Lema}
+\newtheorem{definicao}[theorem]{\scshape Definição}
+\newtheorem{conjectura}[theorem]{\scshape Conjectura}
+\newtheorem{escolio}[theorem]{\scshape Escólio}
+\newtheorem{exemplo}[theorem]{\scshape Exemplo}
+\newtheorem{exemplos}[theorem]{\scshape Exemplos}
+\newtheorem{propriedade}[theorem]{\scshape Propriedade}
+
+\renewcommand{\u}{{\bf u}}
+\renewcommand{\v}{{\bf v}}
+\renewcommand{\sin}{\operatorname{sen}}
+\providecommand{\cas}{\operatorname{cas}}
+\providecommand{\mdc}{\mathrm{mdc}}
+\providecommand{\f}{{\bf f}}
+
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+%\newcommand{\qed}{\hfill $\square$}
+
+\renewcommand\Re{\operatorname{Re}}
+\renewcommand\Im{\operatorname{Im}}
+
+\providecommand{\x}{{\bf x}}
+\providecommand{\y}{{\bf y}}
+\providecommand{\w}{{\bf w}}
+\providecommand{\f}{{\bf f}}
+\providecommand{\q}{{\bf q}}
+\providecommand{\bfa}{{\bf a}}
+\providecommand{\bfb}{{\bf b}}
+\providecommand{\bfc}{{\bf c}}
+\providecommand{\bfd}{{\bf d}}
+\providecommand{\bfe}{{\bf e}}
+\providecommand{\bfs}{{\bf s}}
+\providecommand{\bfz}{{\bf z}}
+\providecommand{\zero}{{\bf 0}}
+\providecommand{\spn}{\mathrm{span}}
+\providecommand{\posto}{\mathrm{posto}}
+\providecommand{\nul}{\mathrm{nul}}
+\providecommand{\proj}{\mathrm{proj}}
+\providecommand{\tr}{\mathrm{tr}}
+\providecommand{\sgn}{\mathrm{sgn}}
+
+\providecommand{\cov}{\mathrm{cov}}
+
+\providecommand{\dilation}{\mathcal{D}}
+\providecommand{\erosion}{\mathcal{E}}
+\providecommand{\open}{\mathcal{O}}
+\providecommand{\close}{\mathcal{C}}
+
+\newcommand*{\Bhat}{\skew{3}{\hat}{B}}
+
+\mode<presentation>
+{
+  \setbeamertemplate{background canvas}[vertical shading][bottom=white!10,top=blue!10]
+%  \usetheme{Berkeley}
+  \usetheme{CambridgeUS}
+%  \usetheme{Madrid}
+%  \usetheme{Warsaw}
+  \usefonttheme[onlysmall]{structurebold}
+  
+  \setbeamertemplate{headline}{}
+  
+%   \setbeamercovered{invisible} % default
+  \setbeamercovered{ transparent, again covered={\opaqueness{25}} } % =15%
+%   \setbeamercovered{transparent=50}
+%   \setbeamercovered{dynamic}
+
+%   \setbeamercovered{again covered={\opaqueness<1->{25}}}
+}
+
+% copiado do site:
+% http://latex-beamer-class.10966.n7.nabble.com/Covering-images-transparent-i-e-dimmed-figures-td1504
+% . html
+\usepackage{ifthen}
+
+\makeatletter
+\newcommand{\includecoveredgraphics}[2][]{
+    \ifthenelse{\the\beamer@coveringdepth=1}{
+        \tikz
+            \node[inner sep=0pt,outer sep=0pt,opacity=0.15]
+                {\includegraphics[#1]{#2}};
+    }{
+        \tikz
+            \node[inner sep=0pt,outer sep=0pt]
+                {\includegraphics[#1]{#2}};%
+    }
+} 
+\makeatother % não sei se precisa...
+
+
+% para a disciplina de Processamento de Imagens
+\title{Interação Gravitacional Entre Três Corpos}
+\author{Alice Amaral\\ José Ribeiro\\ Marcos Pereira}
+\date{UnB - Universidade de Brasília\\
+IFD - Instituto de Física\\
+Métodos Computacionais A - 1º/2018}
+\institute{}
+
+
+
+\begin{document}
+
+
+\frame{\titlepage}
+
+%%% SUMÁRIO %%%
+\section{Sumário}
+%\frame{\tableofcontents}
+%\section{}
+
+\begin{frame}{Sumário}
+\begin{enumerate}
+\item<+->{Teoria}
+\item<+->{Algoritmo}
+\item<+->{Programa}
+\item<+->{Resultados}
+\item<+->{Animações}
+\end{enumerate}
+\end{frame}
+%\begin{frame}{\tableofcontents}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Abordagem Teórica}
+\section{Abordagem Teórica}
+\subsection{Interação Gravitacional Entre Dois Corpos}
+Potencial gravitacional
+\begin{equation}
+    \varPhi_{1}=-G\frac{m_{1}}{\left[\left(x_2-x_1\right)^2+\left(y_2-y_1\right)^2\right]^{\frac{1}{2}}}
+\end{equation}
+Energia potencial
+\begin{equation}
+U_{12}=m_{2}\varPhi_{1}    
+\end{equation}
+logo, se $$\mathbf{F}_{ij}=-\bm{\nabla}U_{ij}=-m_j\bm{\nabla}\varPhi_i$$
+\begin{center}
+\begin{displaymath}
+-\bm{\nabla}U_{12}=-G\frac{m_1m_2\mathbf{r}_{12}}{\left[\left(x_2-x_1\right)^2+\left(y_2-y_1\right)^2\right]^{\frac{3}{2}}}=\bm{\nabla}U_{21}
+\end{displaymath}
+
+\end{center}
+
+\end{frame}
+
+
+%\begin{frame}
+%    \begin{figure}[h!]
+%        \centering
+%        \includegraphics[scale=.6]{fig1.png}
+%        \caption{Sistema Sol-Terra}
+%        \label{fig:solterra}
+%    \end{figure}
+%\end{frame}
+%%%
+\begin{frame}{Interação Gravitacional Entre Três Corpos}
+\uncover<+->{Os três corpos interagem entre si perturbando as trajetórias:}
+
+
+\begin{itemize}
+\vfill \item<+->{Interação entre 1 e 2:
+\begin{equation*}
+ \mathbf{F}_{12}=-G\frac{\mathbf{r}_{12}}{\left[\left(x_2-x_1\right)^2+\left(y_2-y_1\right)^2\right]^{\frac{3}{2}}}=-\mathbf{F}_{21} \, .
+\end{equation*}
+}
+
+\vfill \item<+->{Interação entre 2 e 3:
+\begin{equation*}
+  \mathbf{F}_{32}=-G\frac{\mathbf{r}_{32}}{\left[\left(x_3-x_2\right)^2+\left(y_3-y_2\right)^2\right]^{\frac{3}{2}}}=-\mathbf{F}_{23} \, .
+\end{equation*}
+}
+
+\vfill \item<+->{Interação entre 1 e 3:
+\begin{equation*}
+ \mathbf{F}_{13}=-G\frac{\mathbf{r}_{13}}{\left[\left(x_3-x_1\right)^2+\left(y_3-y_1\right)^2\right]^{\frac{3}{2}}}=-\mathbf{F}_{31} \, . 
+\end{equation*}
+}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Matriz de co-ocorrência}
+\uncover<+->{Matriz de co-ocorrência com $d = 1$ e $\theta = 0^{\circ}$:}
+
+%%begin novalidate
+\vfill
+\uncover<+->{
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+3 & 2 & 0 & 1 & 0  \\
+\hline
+1 & 2 & 1 & 3 & 0  \\
+\hline
+3 & 1 & 0 & 2 & 3  \\
+\hline
+1 & 2 & 3 & 0 & 3  \\
+\hline
+0 & 0 & 0 & 0 & 1 \\
+\hline
+\end{tabular}
+}
+\uncover<+->{
+\quad
+\begin{tabular}{c|c c c c}
+  & 0 & 1 & 2 & 3  \\
+\hline
+0 & 3 & 2 & 1 & 1  \\
+
+1 & 2 & 0 & 2 & 1  \\
+
+2 & 1 & 1 & 0 & 2  \\
+
+3 & 2 & 1 & 1 & 0 \\
+\end{tabular}
+\end{center}
+}
+%%end novalidate
+
+\vfill
+\uncover<+->{
+\begin{center}
+\begin{tabular}{c|c c c c}
+  & 0 & 1 & 2 & 3  \\
+\hline
+0 & 0.15 & 0.10 & 0.05 & 0.05  \\
+
+1 & 0.10 & 0.00 & 0.10 & 0.05  \\
+
+2 & 0.05 & 0.05 & 0.00 & 0.10  \\
+
+3 & 0.10 & 0.05 & 0.05 & 0.00 \\
+\end{tabular}
+\end{center}
+}
+\end{frame}
+
+
+
+
+\begin{frame}{Matriz de co-ocorrência}
+\uncover<+->{
+\begin{eqnarray*}
+ P(i,j,d,135^{\circ}) &=& \#\{\{(k,l),(m,n)\} \subset S \, | \, (k - m = d, l - n = d) \mbox{ ou}\\
+ && (k - m = -d, l - n = -d), f(k,l) = i, f(m,n) = j \} \, .
+\end{eqnarray*}
+}
+
+\vfill
+\uncover<+->{Pode-se normalizar os elementos da matriz de co-ocorrência para que representem
+probabilidades fazendo:}
+
+\vfill
+\uncover<+->{
+\begin{equation*}
+ p(i,j) = \frac{P(i,j)}{\sum\limits_{p = 0}^{H_g} \sum\limits_{q = 0}^{H_g} P(p,q)} \, , 
+\end{equation*}
+}
+
+\uncover<+->{sendo $H_g$ o nível de cinza máximo na imagem.}
+\end{frame}
+
+\begin{frame}{Tipos de Sinais -- Exemplos}
+\uncover<+->{
+Uma imagem pode ser vista como um sinal que é, por sua vez, uma função de duas variáveis espaciais:
+$x$ e $y$.}
+
+
+%\uncover<+->{
+%%\begin{figure}
+%% \includecoveredgraphics[width=0.9\paperwidth, clip=true, trim=50mm 100mm 10mm
+%%0]{./figures/fig_image_signal.jpg}
+%%\end{figure}
+
+\end{frame}
+'
+
+
+
+
+%%% BIBLIOGRAFIA %%%
+\begin{frame}[allowframebreaks]
+\frametitle{Referências}
+\bibliographystyle{plain}
+\bibliography{biblio.bib}
+\end{frame}
+
+
+
+\end{document}

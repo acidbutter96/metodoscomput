@@ -1,0 +1,4 @@
+\babel@toc {brazil}{}
+\beamer@sectionintoc {1}{Sumário}{2}{0}{1}
+\beamer@sectionintoc {2}{Abordagem Teórica}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Interação Gravitacional Entre Dois Corpos}{7}{0}{2}
